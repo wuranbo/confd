@@ -17,6 +17,7 @@ func newFuncMap() map[string]interface{} {
 	m["dir"] = path.Dir
 	m["getenv"] = os.Getenv
 	m["join"] = strings.Join
+	m["link"] = link
 	m["datetime"] = time.Now
 	return m
 }
@@ -37,4 +38,8 @@ func UnmarshalJsonArray(data string) ([]interface{}, error) {
 	var ret []interface{}
 	err := json.Unmarshal([]byte(data), &ret)
 	return ret, err
+}
+
+func link(str1 string, str2 string) string {
+	return str1 + str2
 }
