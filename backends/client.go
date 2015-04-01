@@ -4,12 +4,12 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/kelseyhightower/confd/backends/consul"
-	"github.com/kelseyhightower/confd/backends/env"
-	"github.com/kelseyhightower/confd/backends/etcd"
-	"github.com/kelseyhightower/confd/backends/redis"
-	"github.com/kelseyhightower/confd/backends/zookeeper"
-	"github.com/kelseyhightower/confd/log"
+	"github.com/wuranbo/confd/backends/consul"
+	"github.com/wuranbo/confd/backends/env"
+	"github.com/wuranbo/confd/backends/etcd"
+	"github.com/wuranbo/confd/backends/redis"
+	"github.com/wuranbo/confd/backends/zookeeper"
+	"github.com/wuranbo/confd/log"
 )
 
 // The StoreClient interface is implemented by objects that can retrieve
