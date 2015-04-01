@@ -1,3 +1,9 @@
+# wuranbo-v0.7.2
+
+添加了递归查找功能: 注意toml文件的src是相对config根目录的相对路径，有子目录的也要对应填上。
+
+[下载](docs/installation.md)
+
 # confd
 
 [![Build Status](https://travis-ci.org/wuranbo/confd.png?branch=master)](https://travis-ci.org/wuranbo/confd)

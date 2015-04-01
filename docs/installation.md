@@ -7,13 +7,13 @@ Currently confd ships binaries for OS X and Linux 64bit systems. You can downloa
 #### OS X
 
 ```
-$ wget https://github.com/kelseyhightower/confd/releases/download/v0.7.1/confd-0.7.1-darwin-amd64
+$ wget https://github.com/wuranbo/confd/releases/download/wuranbo-v0.7.2/confd-wuranbo-v0.7.2-darwin-amd64
 ```
 
 #### Linux
 
 ```
-$ wget https://github.com/kelseyhightower/confd/releases/download/v0.7.1/confd-0.7.1-linux-amd64
+$ wget https://github.com/wuranbo/confd/releases/download/wuranbo-v0.7.2/confd-wuranbo-v0.7.2-linux-amd64
 ```
 
 #### Building from Source
