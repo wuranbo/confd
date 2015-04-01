@@ -4,7 +4,7 @@ set -e
 
 GO="godep go"
 
-ORG_PATH="github.com/kelseyhightower"
+ORG_PATH="github.com/wuranbo"
 REPO_PATH="${ORG_PATH}/confd"
 
 echo "Building confd..."
