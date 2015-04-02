@@ -2,8 +2,10 @@ package template
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -17,8 +19,9 @@ func newFuncMap() map[string]interface{} {
 	m["dir"] = path.Dir
 	m["getenv"] = os.Getenv
 	m["join"] = strings.Join
-	m["link"] = link
 	m["datetime"] = time.Now
+	m["concat"] = Concat
+	m["byteToM"] = ByteToM
 	return m
 }
 
@@ -40,6 +43,18 @@ func UnmarshalJsonArray(data string) ([]interface{}, error) {
 	return ret, err
 }
 
-func link(str1 string, str2 string) string {
-	return str1 + str2
+func Concat(strs ...interface{}) string {
+	return fmt.Sprint(strs...)
+}
+
+func ByteToM(data string) (string, error) {
+	r, err := strconv.ParseUint(data, 10, 64)
+	if err != nil || r < 0 {
+		return "0m", err
+	}
+	if r < 1024*1024*1024 {
+		return "1m", err
+	} else {
+		return fmt.Sprint(r/(1024*1024*1024), "m"), err
+	}
 }
