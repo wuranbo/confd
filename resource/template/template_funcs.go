@@ -22,6 +22,10 @@ func newFuncMap() map[string]interface{} {
 	m["datetime"] = time.Now
 	m["concat"] = Concat
 	m["byteToM"] = ByteToM
+	m["strsub"] = StringSub
+	m["stradd"] = StringAdd
+	m["strmul"] = StringMul
+	m["strdiv"] = StringDiv
 	return m
 }
 
@@ -57,4 +61,28 @@ func ByteToM(data string) (string, error) {
 	} else {
 		return fmt.Sprint(r/(1024*1024*1024), "m"), err
 	}
+}
+
+func StringAdd(num1 int, num2 int) int {
+	return num1 + num2
+}
+
+func StringSub(num1 int, num2 int) int {
+	var rlt = num1 - num2
+	if rlt < 0 {
+		rlt = 0
+	}
+	return rlt
+}
+
+func StringMul(num1 int, num2 int) int {
+	return num1 * num2
+}
+
+func StringDiv(num1 int, num2 int) int {
+	var rlt = num1 / num2
+	if rlt <= 0 {
+		rlt = 1
+	}
+	return rlt
 }
