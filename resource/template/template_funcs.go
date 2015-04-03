@@ -11,6 +11,10 @@ import (
 	"time"
 )
 
+func NewFuncMap() map[string]interface{} {
+	return newFuncMap()
+}
+
 func newFuncMap() map[string]interface{} {
 	m := make(map[string]interface{})
 	m["base"] = path.Base
@@ -34,6 +38,10 @@ func addFuncs(out, in map[string]interface{}) {
 	for name, fn := range in {
 		out[name] = fn
 	}
+}
+
+func AddFuncs(out, in map[string]interface{}) {
+	addFuncs(out, in)
 }
 
 func UnmarshalJsonObject(data string) (map[string]interface{}, error) {
