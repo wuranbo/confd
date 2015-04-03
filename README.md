@@ -1,7 +1,8 @@
-# wuranbo-v0.7.2.1
+# wuranbo-v0.8.1
 
 - 添加了递归查找功能: 注意toml文件的src是相对config根目录的相对路径，有子目录的也要对应填上。
-- 添加template函数concat，bytetoM
+- 添加template函数concat，bytetoM, 四则运算
+- 增加了只在内存内处理模板
 
 [下载](docs/installation.md)
 
