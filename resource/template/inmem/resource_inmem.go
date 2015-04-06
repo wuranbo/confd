@@ -86,16 +86,12 @@ func NewInmemTemplateResource(
 		return nil, errors.New("A valid StoreClient is required.")
 	}
 	var tc TomlContainer
-	// fmt.Println("((((((((((((((((((tomltext", tomltext)
 	_, err := toml.Decode(tomltext, &tc)
-	// fmt.Println("((((((((((((((((((tc", tc)
 	if err != nil {
 		return nil, fmt.Errorf("Cannot process template resource, error:%s", err.Error())
 	}
 	data := make([]byte, len(tmpltext))
 	copy(data[:], tmpltext)
-	// fmt.Println("((((((((((((((((((tc", tc)
-	// fmt.Println("((((((((((((((((((tc.TomlTemplateSection", tc.TomlTemplateSection)
 	tr := InmemTemplateResource{
 		Keys: tc.TomlTemplateSection.Keys,
 		Dest: InmemTemplateDest{Origin: tc.TomlTemplateSection.Dest},
@@ -160,6 +156,9 @@ func (t *InmemTemplateResource) process() error {
 	}
 	t.Dest.Data = t.Stage
 	return nil
+}
+func (t *InmemTemplateResource) Process() error {
+	return t.process()
 }
 
 var ErrEmptySrc = errors.New("empty src template")

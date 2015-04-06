@@ -43,9 +43,7 @@ val: abc
 
 `,
 		updateStore: func(tr *InmemTemplateResource) {
-			fmt.Println("pre store.set:", "dong")
 			tr.store.Set("/test/key", "abc")
-			fmt.Println("after store.set:", "dong")
 		},
 	},
 
@@ -364,7 +362,6 @@ func inmemTemplateResource(testdata *inmemTemplateTest) (*InmemTemplateResource,
 		StoreClient: client, // not used but must be set
 	}
 
-	fmt.Println("(((((((((((testdata:", testdata)
 	tr, err := NewInmemTemplateResource(testdata.toml, testdata.tmpl, config)
 	if err != nil {
 		return nil, err
