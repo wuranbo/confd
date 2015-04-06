@@ -1,4 +1,4 @@
-package template
+package inmem
 
 import (
 	"fmt"
