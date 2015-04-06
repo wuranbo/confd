@@ -92,6 +92,10 @@ func sameConfig(src, dest string) (bool, error) {
 	return true, nil
 }
 
+func RecursiveFindFiles(root string, pattern string) ([]string, error) {
+	return recursiveFindFiles(root, pattern)
+}
+
 // recursiveFindFiles find files with pattern in the root with depth.
 func recursiveFindFiles(root string, pattern string) ([]string, error) {
 	files := make([]string, 0)
