@@ -33,6 +33,7 @@ type TomlTemplateSection struct {
 // InmemTemplateResource is the representation of a parsed template resource.
 type InmemTemplateResource struct {
 	Origin      string
+	Data        TextResource
 	Stage       TextResource      // tmp save position, should be assigned to Dest
 	Dest        InmemTemplateDest // result in memeory
 	Src         InmemTemplateSrc  // template file in memory
@@ -90,12 +91,15 @@ func NewInmemTemplateResource(
 	if err != nil {
 		return nil, fmt.Errorf("Cannot process template resource, error:%s", err.Error())
 	}
-	data := make([]byte, len(tmpltext))
-	copy(data[:], tmpltext)
+	data := make([]byte, len(tomltext))
+	copy(data[:], tomltext)
+	tmpldata := make([]byte, len(tmpltext))
+	copy(tmpldata[:], tmpltext)
 	tr := InmemTemplateResource{
 		Keys: tc.TomlTemplateSection.Keys,
+		Data: TextResource{data},
 		Dest: InmemTemplateDest{Origin: tc.TomlTemplateSection.Dest},
-		Src:  InmemTemplateSrc{Origin: tc.TomlTemplateSection.Src, Data: TextResource{data}},
+		Src:  InmemTemplateSrc{Origin: tc.TomlTemplateSection.Src, Data: TextResource{tmpldata}},
 	}
 
 	tr.storeClient = config.StoreClient
