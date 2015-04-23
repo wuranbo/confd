@@ -114,7 +114,7 @@ func NewInmemTemplateResource(
 }
 
 // setVars sets the Vars for template resource.
-func (t *InmemTemplateResource) setVars() error {
+func (t *InmemTemplateResource) setVars(extrakvs map[string]string) error {
 	var err error
 	result, err := t.storeClient.GetValues(appendPrefix(t.prefix, t.Keys))
 	if err != nil {
@@ -123,6 +123,9 @@ func (t *InmemTemplateResource) setVars() error {
 	t.store.Purge()
 	for k, v := range result {
 		t.store.Set(filepath.Join("/", strings.TrimPrefix(k, t.prefix)), v)
+	}
+	for k, v := range extrakvs {
+		t.store.Set(k, v) // overwrite
 	}
 	return nil
 }
@@ -151,8 +154,8 @@ func (t *InmemTemplateResource) sync() error {
 // from the store, then we stage a candidate configuration file, and finally sync
 // things up.
 // It returns an error if any.
-func (t *InmemTemplateResource) process() error {
-	if err := t.setVars(); err != nil {
+func (t *InmemTemplateResource) process(extrakvs map[string]string) error {
+	if err := t.setVars(extrakvs); err != nil {
 		return err
 	}
 	if err := t.createStage(); err != nil {
@@ -161,8 +164,8 @@ func (t *InmemTemplateResource) process() error {
 	t.Dest.Data = t.Stage
 	return nil
 }
-func (t *InmemTemplateResource) Process() error {
-	return t.process()
+func (t *InmemTemplateResource) Process(extrakvs map[string]string) error {
+	return t.process(extrakvs)
 }
 
 var ErrEmptySrc = errors.New("empty src template")
