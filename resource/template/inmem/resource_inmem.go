@@ -125,6 +125,11 @@ func (t *InmemTemplateResource) setVars(extrakvs map[string]string) error {
 		t.store.Set(filepath.Join("/", strings.TrimPrefix(k, t.prefix)), v)
 	}
 	for k, v := range extrakvs {
+		// presume empty string of a extrakvs is meaningless,
+		// use it to unset a key
+		if v == "" {
+			t.store.Del(k)
+		}
 		t.store.Set(k, v) // overwrite
 	}
 	return nil
