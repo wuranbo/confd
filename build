@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
+PROJECT_ROOT=`pwd`
+ORG_PATH="github.com/wuranbo"
+REPO_PATH="${ORG_PATH}/confd"
+mkdir gopath
+export GOPATH=${PROJECT_ROOT}/gopath
+
+rm -f $GOPATH/src/${REPO_PATH}
+mkdir -p $GOPATH/src/${ORG_PATH}
+ln -s ${PROJECT_ROOT}/ $GOPATH/src/${REPO_PATH}
+
 set -e
 
 GO="godep go"
-
-ORG_PATH="github.com/wuranbo"
-REPO_PATH="${ORG_PATH}/confd"
 
 echo "Building confd..."
 # Static compilation is useful when confd is run in a container
