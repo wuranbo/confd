@@ -7,6 +7,7 @@ import (
 	"github.com/wuranbo/confd/backends/consul"
 	"github.com/wuranbo/confd/backends/env"
 	"github.com/wuranbo/confd/backends/etcd"
+	"github.com/wuranbo/confd/backends/json"
 	"github.com/wuranbo/confd/backends/redis"
 	"github.com/wuranbo/confd/backends/zookeeper"
 	"github.com/wuranbo/confd/log"
@@ -39,6 +40,8 @@ func New(config Config) (StoreClient, error) {
 		return redis.NewRedisClient(backendNodes)
 	case "env":
 		return env.NewEnvClient()
+	case "json":
+		return json.NewJsonClient(backendNodes)
 	}
 	return nil, errors.New("Invalid backend")
 }
