@@ -1,9 +1,9 @@
 # Usage
 
-git clone https://github.com/wuranbo/confd.git
-cd confd
-./build
-cp bin/confd ~/bin/
+> git clone https://github.com/wuranbo/confd.git
+> cd confd
+> ./build
+> cp bin/confd ~/bin/
 
 # wuranbo-v0.8.2
 
