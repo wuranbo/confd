@@ -74,7 +74,7 @@ func readKVsFromFile(filename string) map[string]string {
 		err := prefixdec.Decode(&prefixmap)
 		for k, v := range prefixmap {
 			if k == "prefix" {
-				prefix = v.(string)
+				prefix = filepath.Join("/", v.(string))
 				log.Notice("file: " + filename + " decode prefix == " + prefix)
 				delete(prefixmap, k)
 
@@ -91,7 +91,7 @@ func readKVsFromFile(filename string) map[string]string {
 			continue
 		}
 	}
-	if prefix == "" {
+	if prefix == "/" {
 		log.Notice("file " + filename + " not has prefix")
 	}
 

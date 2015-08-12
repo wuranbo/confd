@@ -32,5 +32,6 @@ DELIM
 
 # Run confd
 confd -onetime -verbose -debug -confdir ./integration/confdir -backend json -node $jsonname
+confd -onetime -verbose -debug -confdir ./integration/confdir -backend json -node $jsonname -prefix prefix
 
 rm $jsonname
